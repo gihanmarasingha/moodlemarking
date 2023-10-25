@@ -7,7 +7,12 @@ name = "moodlemarking"
 dynamic = ["version"]
 description = "Tools for simplifying marking in Moodle"
 readme = "README.md"
-license = ""
+license = "LICENSE"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+]
 authors = [
     { name = "Gihan Marasingha", email = "gihan.marasingha@gmail.com" },
 ]
