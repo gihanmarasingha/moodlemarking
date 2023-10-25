@@ -1,12 +1,31 @@
 # Moodle Marking Tools
 
+[![PyPI - Version](https://img.shields.io/pypi/v/moodlemarking.svg)](https://pypi.org/project/moodlemarking)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/moodlemarking.svg)](https://pypi.org/project/moodlemarking)
+
+
+-----
+
+**Table of Contents**
+
+- [Overview](#overview)
+- [Installation](#installation)
+- [Process](#process)
+- [Adding Margins](#adding-margins)
+- [Building the package](#building-the-package)
+- [License](#license)
+
+## Overview
+
 [Moodle](https://moodle.org) is a learning management system. It can be used to coordinate marking
 of student work via 'assignments'. 
 
-Online marking is easily accomplished for certain filetypes, such as MS Word. But mathematicians
-will find it easier to download submissions in bulk, mark offline, then upload back to Moodle.
+Online marking is well-supported for certain filetypes, such as MS Word. But mathematicians
+will find it easier to download PDF submissions in bulk, annote offline, then upload back to Moodle.
 
-The tools in this package are designed to make this process more streamlined.
+The tools in this package are designed to make uploading and annotation more streamlined.
+
+
 
 ## Installation
 
@@ -66,27 +85,16 @@ Both the `-ml` and `-mt` flags can be combined.
 
 ## Building the package
 
-If you want to work on this Python package, first clone the repository then create a Python
-virtual environment in the root directory via the following (you may need to replace `python` with
-`python3` below if you run macOS):
+If you want to work on this Python package, first clone the repository. Within the repository,
+you can build the package using
 ```
-python -m venv .venv
+hatch build
 ```
-Activate the environment with
+and publish via
 ```
-source .venv/bin/activate
-```
-To install the dependencies, run
-```
-pip install -r requirements.txt
-```
-Build the package with
-```
-python setup.py sdist
+hatch publish
 ```
 
-You can install this in your virtual environment by
-```
-pip install .
-```
+## License
 
+`moodlemarking` is distributed under the terms of the [MIT](https://spdx.org/licenses/MIT.html) license.
