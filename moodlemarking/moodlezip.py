@@ -1,8 +1,55 @@
 #!/usr/bin/env python3
-import os
-import sys
-import argparse
-import zipfile
+import os, sys, argparse, zipfile, re
+
+pattern = r'^X[0-9a-fA-F]{8}$'
+
+def workonfolder(foldername, folder_path, zipf, verbose):
+    if verbose:
+        print(f"Examining subdirectory: {folder_path}")
+
+    # Get a list of files in the "File submissions" folder
+    submissions_folder = os.path.join(folder_path, "File submissions")
+    try:
+        files = os.listdir(submissions_folder)
+    except FileNotFoundError:
+        # Handle the case where the "File submissions" folder doesn't exist
+        print(f"Warning: 'File submissions' folder not found in {foldername}. Skipping.", file=sys.stderr)
+        return
+
+    if verbose:
+        print(f"    In the 'File submissions' folder are {files}")
+
+    # Remove the mac custom attributes file
+    files = [file for file in files if file != '.DS_Store']
+    num_files = len(files)
+    if num_files == 0:
+        print(f"Error: No submission file found in {foldername}. Halting.", file=sys.stderr)
+        sys.exit(1)
+    elif num_files > 1:
+        print(f"Error. More than one file found in {foldername}. Halting.", file=sys.stderr)
+        sys.exit(1)
+
+    # Split the foldername using underscore as separator
+    parts = foldername.split('_')
+    # Ensure it has at least 2 parts (ZZZZ and Xyyyyyyyy)
+    if len(parts) >= 2:
+        new_filename = parts[-1]  # Get the Xyyyyyyyy part
+        if not re.match(pattern, new_filename):
+            print(f"Error: Student folder {foldername} does not conform to naming convention. Halting.", file=sys.stderr)
+            sys.exit(1)
+    else:
+        print(f"Error: Student folder {foldername} does not conform to naming convention. Halting.", file=sys.stderr)
+        sys.exit(1)
+
+    for file in files:
+        _, extension = os.path.splitext(file)
+
+        # Add the renamed file to the zip archive
+        file_path = os.path.join(submissions_folder, file)
+        zipf.write(file_path, arcname=f"{new_filename}{extension}")
+
+        if verbose:
+            print(f"    Added to zip: {file_path} as {new_filename}{extension}")
 
 def zip_files(root_directory, output_zip, verbose):
     # Create a zip file for storing the renamed files
@@ -13,45 +60,7 @@ def zip_files(root_directory, output_zip, verbose):
 
             # Check if it's a directory
             if os.path.isdir(folder_path):
-                if verbose:
-                    print(f"Examining subdirectory: {folder_path}")
-
-                # Get a list of files in the "File submissions" folder
-                submissions_folder = os.path.join(folder_path, "File submissions")
-                files = os.listdir(submissions_folder)
-
-                if verbose:
-                    print(f"    In the 'File submissions' folder are {files}")
-
-                # Dictionary to store file extensions and their counts
-                extension_counts = {}
-
-                for file in files:
-                    # Split the foldername using underscore as separator
-                    parts = foldername.split('_')
-
-                    # Ensure it has at least 2 parts (ZZZZ and Xyyyyyyyy)
-                    if len(parts) >= 2:
-                        new_filename = parts[1]  # Get the Xyyyyyyyy part
-                        _, extension = os.path.splitext(file)
-
-                        # Check if the file is not hidden and the extension is not empty
-                        if not file.startswith(".") and extension:
-                            # Check if the extension is already in the dictionary
-                            if extension in extension_counts:
-                                # If it is, exit with an error message
-                                print(f"Error: Duplicate extension found in '{submissions_folder}': {extension}")
-                                sys.exit(1)
-
-                            # If not, add it to the dictionary
-                            extension_counts[extension] = 1
-
-                            # Add the renamed file to the zip archive
-                            file_path = os.path.join(submissions_folder, file)
-                            zipf.write(file_path, arcname=f"{new_filename}{extension}")
-
-                            if verbose:
-                                print(f"    Added to zip: {file_path} as {new_filename}{extension}")
+                workonfolder(foldername, folder_path, zipf, verbose)
                                 
 def main():
     parser = argparse.ArgumentParser(description="Creates a zipped file of marked submissions from a "\
