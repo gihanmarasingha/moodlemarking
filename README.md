@@ -47,7 +47,7 @@ pip3 install moodlemarking
 ## Adding margins
 
 I include a separate helper tool that adds a left margin to PDFs. This margin can be used for 
-additional comments.
+additional comments. Optionally, a top margin can be added.
 
 To use the tool, simply type
 ```
@@ -56,8 +56,13 @@ add_margin <source_file> <output_file>
 at the command prompt. This adds a 200-pixel blank left margin. You may specify the width of
 the left margin as:
 ```
-add_margin <source_file> <output_file> -m MARGIN_WIDTH
+add_margin <source_file> <output_file> -ml MARGIN_WIDTH
 ```
+and the top margin as
+```
+add_margin <source_file> <output_file> -mt MARGIN_HEIGHT
+```
+Both the `-ml` and `-mt` flags can be combined.
 
 ## Building the package
 
