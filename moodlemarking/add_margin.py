@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import sys
 import argparse
-from PyPDF2 import PdfReader, PdfWriter, PageObject, Transformation
+from pypdf import PdfReader, PdfWriter, PageObject, Transformation
 
 def add_margin(original_file, new_file, margin_width):
     reader = PdfReader(original_file)
