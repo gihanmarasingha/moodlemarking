@@ -11,7 +11,7 @@ setup(
     entry_points={
         "console_scripts": [
             "moodlezip = moodlemarking.moodlezip:main",
-            "add-margins = moodlemarking.add_margins:main",
+            "add_margin = moodlemarking.add_margin:main",
         ],
     },
 )
