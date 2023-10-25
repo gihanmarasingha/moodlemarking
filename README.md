@@ -44,6 +44,15 @@ pip3 install moodlemarking
 * Again click 'Grading Actions' and select 'Upload feedback files in a zip'. Select the zip file
   you created in 'Preparing feedback for upload'.
 
+## Adding margins
 
+I include a separate helper tool that adds a left margin to PDFs. This margin can be used for 
+additional comments.
+
+To use the tool, simply type
+```
+add_margin <source_file> <output_file>
+```
+at the command prompt. This adds a 200-pixel blank left margin.
 
 
