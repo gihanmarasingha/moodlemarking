@@ -1,0 +1,28 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "moodlemarking"
+dynamic = ["version"]
+description = "Tools for simplifying marking in Moodle"
+readme = "README.md"
+license = ""
+authors = [
+    { name = "Gihan Marasingha", email = "gihan.marasingha@gmail.com" },
+]
+dependencies = [
+    "pypdf",
+]
+
+[project.scripts]
+add_margin = "moodlemarking.add_margin:main"
+moodlezip = "moodlemarking.moodlezip:main"
+
+[tool.hatch.version]
+path = "moodlemarking/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/moodlemarking",
+]
