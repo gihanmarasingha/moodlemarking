@@ -53,6 +53,10 @@ To use the tool, simply type
 ```
 add_margin <source_file> <output_file>
 ```
-at the command prompt. This adds a 200-pixel blank left margin.
+at the command prompt. This adds a 200-pixel blank left margin. You may specify the width of
+the left margin as:
+```
+add_margin <source_file> <output_file> -m MARGIN_WIDTH
+```
 
 
