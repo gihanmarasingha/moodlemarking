@@ -7,7 +7,7 @@ name = "moodlemarking"
 dynamic = ["version"]
 description = "Tools for simplifying marking in Moodle"
 readme = "README.md"
-license = "LICENSE"
+license = ""
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: Apache Software License",
