@@ -3,7 +3,7 @@ import sys
 import argparse
 from PyPDF2 import PdfReader, PdfWriter, PageObject, Transformation
 
-def add_margins(original_file, new_file, margin_width):
+def add_margin(original_file, new_file, margin_width):
     reader = PdfReader(original_file)
     writer = PdfWriter()
 
@@ -34,7 +34,7 @@ def main():
     
     args = parser.parse_args()
 
-    add_margins(args.original_file, args.new_file, args.margin)
+    add_margin(args.original_file, args.new_file, args.margin)
 
 if __name__ == "__main__":
     main()

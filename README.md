@@ -59,4 +59,29 @@ the left margin as:
 add_margin <source_file> <output_file> -m MARGIN_WIDTH
 ```
 
+## Building the package
+
+If you want to work on this Python package, first clone the repository then create a Python
+virtual environment in the root directory via the following (you may need to replace `python` with
+`python3` below if you run macOS):
+```
+python -m venv .venv
+```
+Activate the environment with
+```
+source .venv/bin/activate
+```
+To install the dependencies, run
+```
+pip install -r requirements.txt
+```
+Build the package with
+```
+python setup.py sdist
+```
+
+You can install this in your virtual environment by
+```
+pip install .
+```
 
