@@ -2,3 +2,4 @@
 build/
 moodlemarking.egg-info/
 moodlemarking*tar.gz
+moodlemarking*whl
