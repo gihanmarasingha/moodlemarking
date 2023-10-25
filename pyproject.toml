@@ -5,19 +5,26 @@ build-backend = "hatchling.build"
 [project]
 name = "moodlemarking"
 dynamic = ["version"]
-description = "Tools for simplifying marking in Moodle"
+description = ''
 readme = "README.md"
-license = ""
-classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: Apache Software License",
-    "Operating System :: OS Independent",
-]
+requires-python = ">=3.7"
+license = "MIT"
+keywords = []
 authors = [
-    { name = "Gihan Marasingha", email = "gihan.marasingha@gmail.com" },
+  { name = "Gihan Marasingha", email = "gihan.marasingha@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.7",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-    "pypdf",
+  "pypdf",
 ]
 
 [project.scripts]
@@ -25,9 +32,10 @@ add_margin = "moodlemarking.add_margin:main"
 moodlezip = "moodlemarking.moodlezip:main"
 
 [tool.hatch.version]
-path = "moodlemarking/__init__.py"
+path = "src/moodlemarking/__about__.py"
 
-[tool.hatch.build.targets.sdist]
-include = [
-    "/moodlemarking",
+[tool.hatch.envs.default]
+dependencies = [
+  "coverage[toml]>=6.5",
+  "pytest",
 ]
