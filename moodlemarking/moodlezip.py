@@ -54,8 +54,10 @@ def zip_files(root_directory, output_zip, verbose):
                                 print(f"    Added to zip: {file_path} as {new_filename}{extension}")
                                 
 def main():
-    parser = argparse.ArgumentParser(description="Add renamed files to a zip archive.")
-    parser.add_argument("root_directory", help="The root directory containing subdirectories.")
+    parser = argparse.ArgumentParser(description="Creates a zipped file of marked submissions from a "\
+                                     "folder of marked downloaded Moodle submissions.")
+    parser.add_argument("root_directory", help="The root directory containing one folder per student "\
+                        "submission.")
     parser.add_argument("output_zip", help="Name of the output zip file.")
     parser.add_argument("--verbose", action="store_true", help="Print diagnostic messages.")
 
