@@ -14,7 +14,7 @@ authors = [
   { name = "Gihan Marasingha", email = "gihan.marasingha@gmail.com" },
 ]
 classifiers = [
-Development Status :: 2 - Pre-Alpha,
+  "Development Status :: 2 - Pre-Alpha",
   "Programming Language :: Python",
   "Programming Language :: Python :: 3.7",
   "Programming Language :: Python :: 3.8",
@@ -23,7 +23,7 @@ Development Status :: 2 - Pre-Alpha,
   "Programming Language :: Python :: 3.11",
 ]
 dependencies = [
-  "pypdf >= 3.16.4, <4",
+  "pypdf >= 3.16.4, < 4",
 ]
 
 [project.scripts]
